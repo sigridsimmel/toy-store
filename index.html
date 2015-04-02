@@ -1,0 +1,67 @@
+<!DOCKTYPE html>
+<html ng-app="toyStore"">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Legetøjsbutikken</title>
+	
+		<link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
+		<script type="text/javascript" src="assets/js/angular/angular.min.js"></script>
+		<script type="text/javascript" src="app/app.js"></script>
+		<script type="text/javascript" src="app/cart/cart.js"></script>
+	</head>
+	
+	<body ng-controller="StoreController as store">	
+	<main class="container-fluid col-xs-12">
+	
+		<header>
+			<h1>Legetøjsbutikken</h1>
+		</header>
+		
+		<section class="col-sm-6 col-md-5 pull-right">	
+			<shopping-cart></shopping-cart>
+		</section>	
+		
+		<section class="col-sm-10 col-md-8 center-block" style="float: none;">
+			<table class="table product-table col-xs-12" ng-repeat="product in store.products">			
+				<tr>
+					<td class="col-xs-3">
+						<img ng-src="{{product.imageThumbnail}}">
+					</td>
+					<td class="col-sm-5">
+						<h3 class="text-primary">{{product.name}}</h3>
+						<p>{{product.description}}</p>
+						<button type="button" class="btn btn-link pull-right" ng-click="product.showInfo = true" ng-hide="product.showInfo===true">Læs mere</button>
+					</td>
+					<td class="col-xs-2">
+						<h3>{{product.price}} kr.</h3>
+					</td>
+					<td class="col-xs-2" >
+						<button type="button" class="btn btn-primary pull-right" ng-click="store.addTo(product)">Læg i kurv</button>
+					</td>
+				</tr>
+				
+				<section>
+					<tr ng-show="product.showInfo===true">					
+						<td>
+							<img ng-src="{{product.image}}" width="140%">
+						</td>
+						<td class="product-description">
+							<p>{{product.descriptionLong}}</p>
+							<p><b>Størrelse:</b> <span class="pull-right">{{product.size}} cm.</span></p>
+						</td>
+						<td>						
+						</td>
+						<td>	
+							<button type="button" class="btn btn-link pull-right" ng-click="product.showInfo = false">Luk</button>
+						</td>
+					</tr>	
+				</section>
+				
+			</table>			
+		</section>
+		
+	</main>			
+	</body>
+</html>
