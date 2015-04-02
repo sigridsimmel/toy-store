@@ -1,1 +1,3 @@
 # toy-store
+
+AngularJS project.
