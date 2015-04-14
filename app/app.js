@@ -5,7 +5,7 @@
 		var store = this;
 		store.products = [];
 		
-		$http.get('app/products/store-products.js').success(function(data) {
+		$http.get('app/products/store-products.json').success(function(data) {
 			store.products = data;
 			
 			//set initial values
